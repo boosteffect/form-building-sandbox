@@ -247,7 +247,7 @@
     </div>
     <div *ngIf="selectedField" class="col-3">
       <!-- Properties Panel -->
-      <div style="padding: 10px; margin-top:150px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+      <div class="sticky" style="padding: 10px; margin-top:150px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
         <div class="form-group">
           <label style="padding-right: 10px;">Required</label>
           <i *ngIf="selectedField.required" (click)="selectedField.required=false" class="fa fa-toggle-on red"></i>
