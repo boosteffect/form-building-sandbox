@@ -10,17 +10,24 @@ import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { FormlyStaticComponent } from './formly-static/formly-static.component';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+import { FormlyDesignerComponent } from './formly-designer/formly-designer.component';
+import { FormlyDynamicComponent } from './formly-dynamic/formly-dynamic.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 const appRoutes: Routes = [
   { path: '', component: EditAppComponent },
   { path: 'formly-static', component: FormlyStaticComponent },
+  { path: 'formly-designer', component: FormlyDesignerComponent },
+  { path: 'formly-dynamic', component: FormlyDynamicComponent },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     EditAppComponent,
-    FormlyStaticComponent
+    FormlyStaticComponent,
+    FormlyDesignerComponent,
+    FormlyDynamicComponent
   ],
   imports: [
     RouterModule.forRoot(appRoutes),
@@ -32,6 +39,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
     FormlyBootstrapModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
