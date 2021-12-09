@@ -13,6 +13,7 @@ export class FormlyDynamicComponent implements OnInit {
   ngOnInit() {
   }
 
+  refreshed = false;
   formConfigJson = "";
 
   form = new FormGroup({});
@@ -26,6 +27,9 @@ export class FormlyDynamicComponent implements OnInit {
   }
 
   refreshForm() {
+    this.refreshed = true;
+
+    // pass the JSON to formly
     this.fields = JSON.parse(this.formConfigJson);
 
     // form changed so reset the model

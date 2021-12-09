@@ -1,22 +1,25 @@
-<div class="container">
-  <div style="padding-bottom: 25px;">
+  <div>
     <h2>Formly Dynamic</h2>
   </div>
   <div>
-    <div style="padding-top: 50px; padding-bottom: 25px;">
-      <textarea [(ngModel)]='formConfigJson' rows="30" cols="120"></textarea>
+    <div class="row">
+      <div class="col-4">
+        <div style="padding-top: 10px; padding-bottom: 25px;">
+          <textarea [(ngModel)]='formConfigJson' rows="30" ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="refreshForm()">Refresh Form</button>
+      </div>
+      <div class="col-8">
+        <div *ngIf="formConfigJson && refreshed" style="margin-top: 25px; padding: 15px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;" >
+          <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+            <formly-form
+              [model]="model"
+              [fields]="fields"
+              [form]="form">
+            </formly-form>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary" (click)="refreshForm()">Refresh Form</button>
-  </div>
-  <div>
-    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
-      <formly-form
-        [model]="model"
-        [fields]="fields"
-        [form]="form">
-      </formly-form>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
-
-</div>
+  </div>  
