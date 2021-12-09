@@ -1,0 +1,22 @@
+<div class="container">
+  <div style="padding-bottom: 25px;">
+    <h2>Formly Dynamic</h2>
+  </div>
+  <div>
+    <div style="padding-top: 50px; padding-bottom: 25px;">
+      <textarea [(ngModel)]='formConfigJson' rows="30" cols="120"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="refreshForm()">Refresh Form</button>
+  </div>
+  <div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form)">
+      <formly-form
+        [model]="model"
+        [fields]="fields"
+        [form]="form">
+      </formly-form>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+</div>
