@@ -1,7 +1,9 @@
-<h1>Formbuilder</h1>
+<div style="padding-bottom: 25px;">
+  <h1>Angular Form Designer</h1>
+</div>
 
 <div *ngIf="model && !report" class="padding20 white-bg">
-  <div class="row">
+  <div class="row" *ngIf="false">
     <div class="col-12">
         <div class="btn-cont">
             <button (click)="initReport()" class="btn btn-primary pull-left">Response</button>
@@ -13,24 +15,24 @@
   <div class="spacer30"></div>
   <div class="row">
     <div class="col-2">
-        <div class="row">
-        <label class="col-8">Background Color</label>
-        <input class="colorpick col-4" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor" >    
-        </div>
-        <div class="row">
-        <label class="col-8">Text Color</label>
-        <input class="colorpick col-4" type="color" name="textColor" [(ngModel)]="model.theme.textColor">    
-        </div>
+      <div class="row" *ngIf="false">
+      <label class="col-8">Background Color</label>
+      <input class="colorpick col-4" type="color" name="bgColor" [(ngModel)]="model.theme.bgColor" >    
+      </div>
+      <div class="row" *ngIf="false">
+      <label class="col-8">Text Color</label>
+      <input class="colorpick col-4" type="color" name="textColor" [(ngModel)]="model.theme.textColor">    
+      </div>
 
-      <h4 (click)="test()">Select Fields</h4>
-      <p>Customize your form by drag and drop below fields to the form area.</p>
       <!--a draggable element-->
-      <div class="fields" *ngFor="let item of fieldModels">
-        <div class="field pointer shadow-bg" [dndDraggable]="item"
-        [dndEffectAllowed]="'copy'" 
-        (dndEnd)="onDragEnd($event)">
-          <i [ngClass]="item.icon" class="fa pull-left"></i>
-          <h5>{{item.label}}</h5>
+      <div style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; padding: 10px;"> 
+        <div class="fields" *ngFor="let item of fieldModels">
+          <div class="field pointer shadow-bg" [dndDraggable]="item"
+          [dndEffectAllowed]="'copy'" 
+          (dndEnd)="onDragEnd($event)">
+            <i [ngClass]="item.icon" class="fa pull-left"></i>
+            <h5>{{item.label}}</h5>
+          </div>
         </div>
       </div>
 
@@ -38,16 +40,15 @@
     <div class="col-7">
 
       <div class="form-group"
-      style="margin-bottom: 0px !important; padding: 30px 60px 5px 60px;"
-      [style.backgroundColor]="model.theme.bgColor"
-      [style.color]="model.theme.textColor">
-      <h2><input class="form-control" type="text" [(ngModel)]="model.name" /></h2>
-      <input class="form-control" type="text" [(ngModel)]="model.description" />
+        style="display: none; margin-bottom: 0px !important; padding: 30px 60px 5px 60px;"
+        [style.backgroundColor]="model.theme.bgColor"
+        [style.color]="model.theme.textColor">
+        <h3><input class="form-control" type="text" [(ngModel)]="model.name" /></h3>
       </div>
 
       <!--a dropzone-->
       <!--to allow dropping content that is not [dndDraggable] set dndAllowExternal to true-->
-      <section dndDropzone
+      <section dndDropzone style="box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;"
       (dndDragover)="onDragover($event)"
       (dndDrop)="onDrop($event,model.attributes)" class="dndDropArea"
       [ngClass]="{'empty':model.attributes.length == 0}"
@@ -133,8 +134,8 @@
                   </div>
           </div>
           <div class="col-4">
-            <i *ngIf="item.toggle" (click)="item.toggle=false" class="fa fa-chevron-up pull-right"></i>
-            <i *ngIf="!item.toggle" (click)="item.toggle=true" class="fa fa-chevron-down pull-right"></i>
+            <i *ngIf="false && item.toggle" (click)="item.toggle=false" class="fa fa-chevron-up pull-right"></i>
+            <i *ngIf="false && !item.toggle" (click)="item.toggle=true" class="fa fa-chevron-down pull-right"></i>
             <i (click)="removeField(i)" class="fa fa-trash pull-right"></i>
           </div>
         </div>
@@ -247,7 +248,7 @@
     </div>
     <div *ngIf="selectedField" class="col-3">
       <!-- Properties Panel -->
-      <div class="sticky" style="padding: 10px; margin-top:150px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
+      <div class="sticky" style="padding: 10px; box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;">
         <div class="form-group">
           <label style="padding-right: 10px;">Required</label>
           <i *ngIf="selectedField.required" (click)="selectedField.required=false" class="fa fa-toggle-on red"></i>
@@ -388,10 +389,7 @@ class="container marginT60  marginB30"
 style="max-width:500px;"
 >
 
-<div class="row"
-style="padding:30px;"
-[style.backgroundColor]="model.theme.bgColor"
-[style.color]="model.theme.textColor">
+<div class="row" *ngIf="false" style="padding:30px;" [style.backgroundColor]="model.theme.bgColor" [style.color]="model.theme.textColor">
   <div class="col-12">
     <h2>{{model.name}}</h2>  
   </div>
@@ -472,14 +470,17 @@ style="padding:30px;"
         <input type="{{item.subtype}}" (click)="submit()" value="{{item.label}}" class="btn btn-primary" id="{{item.name}}" >
       </div>
     </div>
-
-    <p (click)="show=1" class="marginT60 pointer">Show developer data</p>
-
   </div>
   </form>
 </div>
+
 </div>
 
-<pre *ngIf="show==1 && model">
-    {{model|json}}
-</pre>
+<div class="row">
+  <div class="col-12">
+    <p (click)="onShowModelChanged()" class="marginT60 pointer">Show model data</p>
+    <pre *ngIf="showModel && model">
+      {{model|json}}
+    </pre>
+  </div> 
+</div>

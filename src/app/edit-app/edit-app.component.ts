@@ -16,6 +16,7 @@ export class EditAppComponent implements OnInit {
     value:""
   };
   success = false;
+  showModel = false;
 
   selectedField: field; 
 
@@ -24,8 +25,8 @@ export class EditAppComponent implements OnInit {
       "type": "text",
       "icon": "fa-font",
       "label": "Text",
-      "description": "Enter your name",
-      "placeholder": "Enter your name",
+      "description": "",
+      "placeholder": "Enter text",
       "className": "form-control",
       "subtype": "text",
       "regex" : "",
@@ -34,10 +35,9 @@ export class EditAppComponent implements OnInit {
     {
       "type": "email",
       "icon": "fa-envelope",
-      "required": true,
       "label": "Email",
-      "description": "Enter your email",
-      "placeholder": "Enter your email",
+      "description": "",
+      "placeholder": "Enter email",
       "className": "form-control",
       "subtype": "text",
       "regex" : "^([a-zA-Z0-9_.-]+)@([a-zA-Z0-9_.-]+)\.([a-zA-Z]{2,5})$",
@@ -48,8 +48,8 @@ export class EditAppComponent implements OnInit {
       "type": "phone",
       "icon": "fa-phone",
       "label": "Phone",
-      "description": "Enter your phone",
-      "placeholder": "Enter your phone",
+      "description": "",
+      "placeholder": "Enter phone",
       "className": "form-control",
       "subtype": "text",
       "regex" : "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$",
@@ -60,12 +60,12 @@ export class EditAppComponent implements OnInit {
       "type": "number",
       "label": "Number",
       "icon": "fa-html5",
-      "description": "Age",
-      "placeholder": "Enter your age",
+      "description": "",
+      "placeholder": "Enter a number",
       "className": "form-control",
       "value": "20",
-      "min": 12,
-      "max": 90
+      "min": 0,
+      "max": 999
     },
     {
       "type": "date",
@@ -74,13 +74,13 @@ export class EditAppComponent implements OnInit {
       "placeholder": "Date",
       "className": "form-control"
     },
-    {
-      "type": "datetime-local",
-      "icon":"fa-calendar",
-      "label": "DateTime",
-      "placeholder": "Date Time",
-      "className": "form-control"
-    },
+//    {
+//      "type": "datetime-local",
+//      "icon":"fa-calendar",
+//      "label": "DateTime",
+//      "placeholder": "Date Time",
+//      "className": "form-control"
+//    },
     {
       "type": "textarea",
       "icon":"fa-text-width",
@@ -94,7 +94,6 @@ export class EditAppComponent implements OnInit {
     },
     {
       "type": "checkbox",
-      "required": true,
       "label": "Checkbox",
       "icon":"fa-list",
       "description": "Checkbox",
@@ -102,11 +101,7 @@ export class EditAppComponent implements OnInit {
       "values": [
         {
           "label": "Option 1",
-          "value": "option-1"
-        },
-        {
-          "label": "Option 2",
-          "value": "option-2"
+          "value": "1"
         }
       ]
     },
@@ -118,11 +113,7 @@ export class EditAppComponent implements OnInit {
       "values": [
         {
           "label": "Option 1",
-          "value": "option-1"
-        },
-        {
-          "label": "Option 2",
-          "value": "option-2"
+          "value": "1"
         }
       ]
     },
@@ -136,25 +127,17 @@ export class EditAppComponent implements OnInit {
       "values": [
         {
           "label": "Option 1",
-          "value": "option-1"
-        },
-        {
-          "label": "Option 2",
-          "value": "option-2"
-        },
-        {
-          "label": "Option 3",
-          "value": "option-3"
+          "value": "1"
         }
       ]
     },
-    {
-      "type": "file",
-      "icon":"fa-file",
-      "label": "File Upload",
-      "className": "form-control",
-      "subtype": "file"
-    },
+//    {
+//      "type": "file",
+//      "icon":"fa-file",
+//      "label": "File Upload",
+//      "className": "form-control",
+//      "subtype": "file"
+//    },
     {
       "type": "button",
       "icon":"fa-paper-plane",
@@ -165,14 +148,14 @@ export class EditAppComponent implements OnInit {
 
   modelFields:Array<field>=[];
   model:any = {
+    attributes:this.modelFields,
     name:'App name...',
     description:'App Description...',
     theme:{
       bgColor:"ffffff",
       textColor:"555555",
       bannerImage:""
-    },
-    attributes:this.modelFields
+    }
   };
 
   report = false;
@@ -356,6 +339,10 @@ export class EditAppComponent implements OnInit {
     // },error=>{
     //   swal('Error',error.message,'error');
     // });
+  }
+
+  onShowModelChanged() {
+    this.showModel = !this.showModel
   }
 
 }
